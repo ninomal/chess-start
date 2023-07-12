@@ -1,34 +1,39 @@
 package boardlayer;
 
 public class Bord {
-	Integer rows;
-	Integer colums;
+	int rows;
+	int columns;
 	Piece [][] piece;
 
-	public Bord(Integer rows, Integer colums) {
+	public Bord(int rows, int columns) {
 		this.rows = rows;
-		this.colums = colums;
-		piece = new Piece[rows][colums];
+		this.columns = columns;
+		piece = new Piece[rows][columns];
 	}
 
-	public Integer getRows() {
+	public int getRows() {
 		return rows;
 	}
 
-	public void setRows(Integer rows) {
+	public void setRows(int rows) {
 		this.rows = rows;
 	}
 
-	public Integer getColums() {
-		return colums;
+	public int getColums() {
+		return columns;
 	}
 
-	public void setColums(Integer colums) {
-		this.colums = colums;
+	public void setColums(int columns) {
+		this.columns = columns;
 	}
 
 	
+	public  Piece piece(int rows, int columns){
+		return piece[rows][columns];
+	}
 	
-	
+	public Piece piece(Position position) {
+		return piece[position.getRow()][position.getColum()];
+	}
 	
 }

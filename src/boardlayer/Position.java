@@ -2,15 +2,15 @@ package boardlayer;
 
 public class Position {
 	Integer row;
-	Integer colum;
+	Integer column;
 	
 	public Position(){
 		
 	}
 
-	public Position(Integer row, Integer colum) {
+	public Position(Integer row, Integer column) {
 		this.row = row;
-		this.colum = colum;
+		this.column = column;
 	}
 
 	
@@ -23,21 +23,22 @@ public class Position {
 	}
 
 	public Integer getColum() {
-		return colum;
+		return column;
 	}
 
-	public void setColum(Integer colum) {
-		this.colum = colum;
+	public void setColum(Integer column) {
+		this.column = column;
 	}
 
-	public void setValues(Integer row, Integer colum){
-		this.colum = colum;
+	public void setValues(Integer row, Integer column){
+		this.column = column;
 		this.row = row;
 	}
 	
 	@Override
 	public String toString(){
-		return row + "," + colum;
+		return row + "," + column;
 	}
+	
 	
 }
