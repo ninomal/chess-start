@@ -3,6 +3,7 @@ package chess;
 import boardlayer.Bord;
 import boardlayer.Position;
 import chess.pieces.King;
+import chess.pieces.Rook;
 
 public class ChessMatch {
 	private Bord bord;
@@ -24,7 +25,8 @@ public class ChessMatch {
 	}
 
 	public void initialSetup() {
-		bord.placePiece(new King(bord,Color.White),new Position(0,4));
+		bord.placePiece(new King(bord,Color.White),new Position(0, 4));
+		bord.placePiece(new Rook(bord,Color.White),new Position(0, 2));
 	}
 
 	

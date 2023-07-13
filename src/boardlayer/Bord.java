@@ -6,6 +6,9 @@ public class Bord {
 	Piece [][] piece;
 
 	public Bord(int rows, int columns) {
+		if (rows < 1 || columns < 1) {
+			throw new BordException("error no allow table measure");
+		}
 		this.rows = rows;
 		this.columns = columns;
 		piece = new Piece[rows][columns];
@@ -15,30 +18,46 @@ public class Bord {
 		return rows;
 	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
 	public int getColums() {
 		return columns;
 	}
-
-	public void setColums(int columns) {
-		this.columns = columns;
-	}
-
 	
 	public  Piece piece(int rows, int columns){
+		if (!positionExists(rows, columns)){
+			throw new BordException("Position not on in bord");
+		}
 		return piece[rows][columns];
 	}
 	
 	public Piece piece(Position position) {
+		if (!positionExists(position)){
+			throw new BordException("Position not on in bord");
+		}
 		return piece[position.getRow()][position.getColumn()];
 	}
 	
 	public void placePiece( Piece pieces, Position position){
+		if (thereIsAPiece(position)){
+			throw new BordException("there existe piece in position" + position);
+		}
 		piece[position.getRow()][position.getColumn()] = pieces;
 		pieces.position = position;
 	}
+
+	public boolean positionExists(int row, int column){
+		return row >= 0 && row < rows && column >= 0 && column < columns;		
+	}
+	
+	public boolean positionExists(Position position){
+		return positionExists(position.getRow(), position.getColumn());		
+	}
+	
+	public boolean thereIsAPiece(Position position){
+		if (positionExists(rows, columns)){
+			throw new BordException("Position not on in bord");
+		}
+		return piece(position) != null;
+	}
+	
 	
 }
