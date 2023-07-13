@@ -5,7 +5,7 @@ import chess.ChessPiece;
 public class UI {
 	public static void printBord(ChessPiece[][] piece){
 		for(int row = 0 ; row < piece.length; row++ ){
-			System.out.print(8 - row);
+			System.out.print(8 - row + " ");
 			for(int column =0; column <piece.length; column++){
 				printPiece(piece[row][column]);
 			}
