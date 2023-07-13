@@ -1,12 +1,15 @@
 package chess;
 
 import boardlayer.Bord;
+import boardlayer.Position;
+import chess.pieces.King;
 
 public class ChessMatch {
 	private Bord bord;
 	
 	public  ChessMatch(){	
-		bord = new Bord(8, 8);		
+		bord = new Bord(8, 8);
+		initialSetup();
 	}
 		
 	public  ChessPiece[][] getPieces(){
@@ -20,6 +23,9 @@ public class ChessMatch {
 		
 	}
 
+	public void initialSetup() {
+		bord.placePiece(new King(bord,Color.White),new Position(0,4));
+	}
 
 	
 	
