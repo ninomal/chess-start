@@ -1,6 +1,8 @@
 package chess;
 
 import boardlayer.Bord;
+import boardlayer.Piece;
+import boardlayer.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -11,7 +13,30 @@ public class ChessMatch {
 		bord = new Bord(8, 8);
 		initialSetup();
 	}
-
+	
+	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validadeSourcePosition(source);
+		Piece capturedPiece = makeMove(source, target);
+		return (ChessPiece) capturedPiece;		
+	}
+	
+	public Piece makeMove(Position source, Position target){	
+		Piece pi =  bord.removePiece(source);
+		Piece capturedPiece = bord.removePiece(target);
+		bord.placePiece(pi, target);
+		return capturedPiece;	
+	}
+	
+	
+	private void validadeSourcePosition(Position position){
+		if (!bord.thereIsAPiece(position)){
+			throw new ChessException("There no piece in source position");
+		}
+	}
+		
 	public void placeNewPiece(char column, int rows, ChessPiece piece) {
 		bord.placePiece(piece, new ChessPosition(column, rows).toPosition());
 	}
