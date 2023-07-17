@@ -6,6 +6,7 @@ public abstract class Piece {
 	
 	public Piece(Bord bord) {
 		this.bord = bord;
+
 	}
 
 	protected Bord getBord() {
@@ -29,5 +30,6 @@ public abstract class Piece {
 		}
 		return false;
 	}
-	
+
+
 }

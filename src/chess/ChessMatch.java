@@ -19,6 +19,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validadeSourcePosition(source);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		return (ChessPiece) capturedPiece;		
 	}
@@ -30,6 +31,11 @@ public class ChessMatch {
 		return capturedPiece;	
 	}
 	
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+		Position position = sourcePosition.toPosition();
+		validadeSourcePosition(position);
+		return bord.piece(position).possiblesMoves();
+	}
 	
 	private void validadeSourcePosition(Position position){
 		if (!bord.thereIsAPiece(position)){
@@ -39,16 +45,22 @@ public class ChessMatch {
 			throw new ChessException("No have any movent for this piece");
 		}
 	}
-		
+	
+	public void validateTargetPosition(Position source, Position target){
+		if(!bord.piece(source).possiblesMove(target)){
+			throw new ChessException("Moviment not possible");
+		}
+	}
+	
 	public void placeNewPiece(char column, int rows, ChessPiece piece) {
 		bord.placePiece(piece, new ChessPosition(column, rows).toPosition());
 	}
 
 	public ChessPiece[][] getPieces() {
 		ChessPiece[][] mat = new ChessPiece[bord.getRows()][bord.getColums()];
-		for (int row = 0; row < bord.getRows(); row++) {
-			for (int column = 0; column < bord.getColums(); column++) {
-				mat[row][column] = (ChessPiece) bord.piece(row, column);
+		for (int i = 0; i < bord.getRows(); i++) {
+			for (int j = 0; j < bord.getColums(); j++) {
+				mat[i][j] = (ChessPiece) bord.piece(i, j);
 			}
 		}
 		return mat;
