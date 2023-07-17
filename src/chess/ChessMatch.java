@@ -24,6 +24,7 @@ public class ChessMatch {
 		return (ChessPiece) capturedPiece;		
 	}
 	
+	
 	public Piece makeMove(Position source, Position target){	
 		Piece pi =  bord.removePiece(source);
 		Piece capturedPiece = bord.removePiece(target);
