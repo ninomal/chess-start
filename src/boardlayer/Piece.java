@@ -6,7 +6,7 @@ public abstract class Piece {
 	
 	public Piece(Bord bord) {
 		this.bord = bord;
-
+		position = null;
 	}
 
 	protected Bord getBord() {

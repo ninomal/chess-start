@@ -20,7 +20,7 @@ public abstract class ChessPiece extends Piece{
 
 	protected boolean isThereOponentPiece(Position position){
 		ChessPiece pi = (ChessPiece) getBord().piece(position);
-		return pi!= null && pi.getColor() != color;
+		return pi != null && pi.getColor() != color;
 	} 
 	
 	public ChessPosition getChessPosition(){

@@ -22,6 +22,10 @@ public class ChessPosition {
 	public int getRows() {
 		return rows;
 	}
+	
+	public ChessPosition getChessPosition(Position position) {
+		return ChessPosition.fromPosition(position);
+	}
 
 	protected Position toPosition(){
 		return new Position(8 - rows , column - 'A');

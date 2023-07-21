@@ -17,7 +17,7 @@ public class Program {
 		ChessMatch ChessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while(true) {
+		while(!ChessMatch.getCheckMate()) {
 			try {
 				UI.clearScreen();	
 				UI.printMatch(ChessMatch, captured);
@@ -25,7 +25,7 @@ public class Program {
 				System.out.printf("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);
 				
-				boolean[][] possibleMoves = ChessMatch.possibleMoves(source);
+				boolean[][] possibleMoves = ChessMatch.possiblesMoves(source);
 				UI.clearScreen();
 				UI.printBord(ChessMatch.getPieces(), possibleMoves);
 				
@@ -47,6 +47,8 @@ public class Program {
 			}
 			
 		}
+		UI.clearScreen();
+		UI.printMatch(ChessMatch, captured);
 		
 	}
 

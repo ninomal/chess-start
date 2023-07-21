@@ -1,9 +1,9 @@
 package boardlayer;
 
 public class Bord {
-	int rows;
-	int columns;
-	Piece [][] piece;
+	private int rows;
+	private int columns;
+	private Piece [][] pieces;
 
 	public Bord(int rows, int columns) {
 		if (rows < 1 || columns < 1) {
@@ -11,7 +11,7 @@ public class Bord {
 		}
 		this.rows = rows;
 		this.columns = columns;
-		piece = new Piece[rows][columns];
+		pieces = new Piece[rows][columns];
 	}
 
 	public int getRows() {
@@ -26,22 +26,22 @@ public class Bord {
 		if (!positionExists(rows, columns)){
 			throw new BordException("Position not on in bord");
 		}
-		return piece[rows][columns];
+		return pieces[rows][columns];
 	}
 	
 	public Piece piece(Position position) {
 		if (!positionExists(position)){
 			throw new BordException("Position not on in bord");
 		}
-		return piece[position.getRow()][position.getColumn()];
+		return pieces[position.getRow()][position.getColumn()];
 	}
 	
-	public void placePiece( Piece pieces, Position position){
+	public void placePiece( Piece piece, Position position){
 		if (thereIsAPiece(position)){
 			throw new BordException("there existe piece in position" + position);
 		}
-		piece[position.getRow()][position.getColumn()] = pieces;
-		pieces.position = position;
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
 	}
 	
 	public Piece removePiece(Position position){
@@ -53,7 +53,7 @@ public class Bord {
 		}
 		Piece aux =  piece(position);
 		aux.position = null;
-		piece[position.getRow()][position.getColumn()] = null;
+		pieces[position.getRow()][position.getColumn()] = null;
 		return aux;	
 	}
 
@@ -66,7 +66,7 @@ public class Bord {
 	}
 	
 	public boolean thereIsAPiece(Position position){
-		if (positionExists(rows, columns)){
+		if (!positionExists(position)){
 			throw new BordException("Position not on in bord");
 		}
 		return piece(position) != null;
